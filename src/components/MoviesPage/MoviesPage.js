@@ -6,7 +6,7 @@ import MovieCard from "../MovieCard";
 import SearchBar from "../SearchBar/SearchBar";
 
 const MoviesPage = () => {
-  const [movies, setMovies] = useState([
+  const [movies] = useState([
     {
       name: "The Dark Knight",
       imgUrl:
