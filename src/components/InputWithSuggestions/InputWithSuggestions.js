@@ -6,7 +6,8 @@ const SearchInput = ({
   value,
   onChange = () => {},
   suggestions = [],
-  onSuggestionClick,
+  onSuggestionClick = () => {},
+  placeholder
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const suggestionsListRef = useRef(null);
@@ -21,7 +22,7 @@ const SearchInput = ({
     <div className={css["input-container"]}>
       <input
         type="text"
-        placeholder="Search for a movie..."
+        placeholder={placeholder}
         className={css["input"]}
         value={value}
         onFocus={() => setIsFocused(true)}

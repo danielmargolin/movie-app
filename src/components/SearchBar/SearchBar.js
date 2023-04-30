@@ -5,37 +5,21 @@ import css from "./SearchBar.module.css";
 import { SEARCH_PAGE_PATH } from "../../constants/routes.constants";
 
 import Button from "../Button";
-import SearchInput from "../InputWithSuggestions";
+import InputWithSuggestions from "../InputWithSuggestions";
 import Logo from "../Logo";
 
-import useSearch from "../../hooks/useSearch.hooks";
-
-const SearchBar = ({ value }) => {
-  const {
-    searchValue,
-    genres,
-    handleInputChange,
-    handleClick,
-    handleMoviesSearch,
-  } = useSearch(value);
+const SearchBar = () => {
 
   return (
     <div className={css["container"]}>
       <div className={css["logo-container"]}>
-          <Link to={SEARCH_PAGE_PATH}>
-        <Logo width={150} />
+        <Link to={SEARCH_PAGE_PATH}>
+          <Logo width={150} />
         </Link>
       </div>
-      <SearchInput
-        value={searchValue}
-        onChange={handleInputChange}
-        suggestions={genres}
-        onSuggestionClick={handleClick}
-      />
+      <InputWithSuggestions placeholder="Search for a movie..." />
       <Button
-        className={css["search-button"]}
-        onClick={() => handleMoviesSearch(searchValue)}
-      >
+        className={css["search-button"]}>
         Try Again
       </Button>
     </div>
