@@ -1,4 +1,4 @@
-import { useMemo, useState, useRef } from "react";
+import { useMemo, useState } from "react";
 
 import css from "./InputWithSuggestions.module.css";
 
@@ -10,7 +10,6 @@ const SearchInput = ({
   placeholder
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-  const suggestionsListRef = useRef(null);
 
   const filteredSuggestions = useMemo(() => {
     return suggestions.filter(
@@ -37,7 +36,7 @@ const SearchInput = ({
         onChange={onChange}
       />
       {filteredSuggestions.length > 0 && isFocused && value.length > 0 && (
-        <div className={css["suggestions-container"]} tabIndex="0" ref={suggestionsListRef}>
+        <div className={css["suggestions-container"]} tabIndex="0">
           {filteredSuggestions.map((suggestion) => (
             <div
               key={suggestion}
