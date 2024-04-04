@@ -4,7 +4,7 @@ import css from "./InputWithSuggestions.module.css";
 
 const SearchInput = ({
   value,
-  onChange = () => {},
+  onChange,
   suggestions = [],
   onSuggestionClick = () => {},
   placeholder
@@ -41,7 +41,7 @@ const SearchInput = ({
             <div
               key={suggestion}
               onClick={(e) => {
-                onSuggestionClick(e);
+                onSuggestionClick(e.target.innerHTML);
               }}
               className={css["suggestion"]}
             >

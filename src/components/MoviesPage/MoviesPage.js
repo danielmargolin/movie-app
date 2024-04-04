@@ -1,18 +1,14 @@
-import { useState } from "react";
-
 import css from "./MoviesPage.module.css";
 
 import MovieCard from "../MovieCard";
 import SearchBar from "../SearchBar/SearchBar";
+import Loader from "../Loader/Loader";
+import useFetchMovies from "./useFetchMovies";
+import { useParams } from "react-router";
 
 const MoviesPage = () => {
-  const [movies] = useState([
-    {
-      name: "The Dark Knight",
-      imgUrl:
-        "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg",
-    },
-  ]);
+  const {genre} = useParams()
+  const {movies, isLoading} = useFetchMovies(genre)
 
   return (
     <div className={css["container"]}>
@@ -20,9 +16,11 @@ const MoviesPage = () => {
         <SearchBar />
       </div>
       <div className={css["movies-container"]}>
+        <Loader isLoading={isLoading}>
         {movies.map((movie) => (
           <MovieCard key={movie.name} {...movie} />
         ))}
+        </Loader>
       </div>
     </div>
   );
